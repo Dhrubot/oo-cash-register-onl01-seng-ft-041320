@@ -1,6 +1,7 @@
 class CashRegister
   
   attr_accessor :total, :discount
+  attr_reader :item
   
   def initialize(employee_discount = 0)
     @total = 0
@@ -10,10 +11,10 @@ class CashRegister
   
   def add_item(title, price, quantity = 1)
     quantity > 1 ? @total += (price * quantity) : @total += price
+    @items << title
   end
   
   def apply_discount
-    
    if @discount > 0
       @discount = @discount/100.to_f
       @total = @total - (@total * (@discount))
